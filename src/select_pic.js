@@ -23,11 +23,8 @@ class SelectPic extends Component {
             headers: new Headers({
                        'Content-Type': 'application/x-www-form-urlencoded',
               })
-        }).then(function(response) {
-            return response.json();
-          }).then(function(data) {
-            console.log(data);
-          });
+        })
+        this.props.toggleSelectPic("")
     }
     componentWillMount(){
         this.setState({player: this.props.player}, () => {
@@ -44,7 +41,6 @@ class SelectPic extends Component {
     }
     render() {
         let currentPic = this.state.picArray[this.state.count]
-        console.log(currentPic, "<-----------------")
         return (
             <div>
                 <h1>{this.state.player}</h1>

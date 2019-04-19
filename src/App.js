@@ -12,12 +12,18 @@ class App extends Component {
     this.state={
       newPlayer: "",
       players: [],
-      selectPic: false
+      selectPic: false,
+      counter: 0
     }
   }
   toggleSelectPic = (newPlayer) => {
-    this.setState({newPlayer: newPlayer, selectPic: true}, () => {
-      console.log("success!")
+    this.setState({newPlayer: newPlayer, selectPic: !this.state.selectPic}, () => {
+      fetch('http://127.0.0.1:5000/getall')
+      .then(results => {
+        return results.json()
+      }).then(data => {
+        this.setState({players: data})
+      })
     })
   }
   componentDidMount(){
@@ -31,7 +37,7 @@ class App extends Component {
   render() {
     if (this.state.selectPic){
       return(
-        <SelectPic player={this.state.newPlayer}/>
+        <SelectPic player={this.state.newPlayer} toggleSelectPic={this.toggleSelectPic}/>
       )
     }
     return (
