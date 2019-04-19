@@ -2,5 +2,10 @@
   text-align: center;
 }
 
+.player_pic {
+  max-width: 5em;
+  max-height: 5em;
+}
+
 
 

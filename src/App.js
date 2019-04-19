@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Header from './header'
 import Footer from './footer'
-import Players from './players'
+import PlayerCard from './player_card'
+import AddPlayer from './add_player'
 import './App.css';
 
 class App extends Component {
@@ -17,17 +18,17 @@ class App extends Component {
       return results.json()
     }).then(data => {
       this.setState({players: data})
-      console.log(data)
     })
   }
   render() {
     return (
       <div className="App">
         <Header/>
+        <AddPlayer/>
           <div>
             {this.state.players.map(function(player, idx){
               return(
-                <Players key={idx +1} player={player}/>
+                <PlayerCard key={idx +1} player={player}/>
               )
             })}
           </div>

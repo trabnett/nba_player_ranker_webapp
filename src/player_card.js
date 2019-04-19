@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 
-class Players extends Component {
+class PlayerCard extends Component {
 
     render() {
       return (
         <div>
+          <div><img className="player_pic" src={this.props.player.picture_url} alt="player avatar"/></div>
           <ul>
             <li>Name: {this.props.player.name}</li>
             <li>Ppg: {this.props.player.ppg}</li>
@@ -17,4 +18,4 @@ class Players extends Component {
     }
   }
   
-  export default Players;
+  export default PlayerCard;
