@@ -15,12 +15,15 @@ class AddPlayer extends Component {
 
         fetch(`http://127.0.0.1:5000/add?name=${this.state.player}`)
         .then(results => {
+            console.log(this.state.player, "<==========")
             return results.json()
           }).then(data => {
-            this.setState({player: data}, () => {
-                console.log(data)
-                this.setState({player: ""})
-            })
+            this.props.toggleSelectPic(this.state.player)
+            // this.setState({player: data.name}, () => {
+            //     console.log(data)
+            //     this.props.toggleSelectPic(this.state.player)
+            //     this.setState({player: ""})
+            // })
           })
         
         
