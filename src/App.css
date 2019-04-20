@@ -6,6 +6,11 @@
   max-width: 5em;
   max-height: 5em;
 }
-
+.pic-select {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 5em;
+}
 
 

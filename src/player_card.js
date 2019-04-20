@@ -9,18 +9,22 @@ class PlayerCard extends Component {
     }
   }
   plusClick = () => {
-    this.setState({rating: this.state.rating + 1}, () => {
+    this.setState({player: this.props.player.name, rating: this.props.player.rating + 1}, () => {
+      console.log(this.props.player.name, this.state.player, this.props.player.rating, this.state.rating, "<===plus click before set state")
       this.props.ratingChange(this.props.player.name, this.state.rating)
+      console.log(this.props.player.name, this.state.player, this.props.player.rating, this.state.rating, "<===plus click")
     })
   }
   minusClick = () => {
     if (this.state.rating > 0){
-      this.setState({rating: this.state.rating - 1}, () => {
+      console.log(this.props.player.name, this.state.player, this.props.player.rating, this.state.rating, "<===negative click before set state")
+      this.setState({player: this.props.player.name, rating: this.props.player.rating - 1}, () => {
         this.props.ratingChange(this.props.player.name, this.state.rating)
+        console.log(this.props.player.name, this.state.player, this.props.player.rating, this.state.rating, "<===negative click")
       })
     }
   }
-  componentDidMount(){
+  componentWillMount(){
     this.setState({player: this.props.player.name, rating: this.props.player.rating})
   }
   render() {

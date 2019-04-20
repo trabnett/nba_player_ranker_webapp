@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './App.css';
 
 class SelectPic extends Component {
     constructor(props){
@@ -43,9 +44,12 @@ class SelectPic extends Component {
     render() {
         let currentPic = this.state.picArray[this.state.count]
         return (
-            <div>
+            <div className="pic-select">
                 <h1>{this.state.player}</h1>
-                <button onClick={this.plusClick}>+</button><img className="player_pic" src={currentPic} alt="player avatar"></img><button onClick={this.minusClick}>-</button>
+                <img className="player_pic" src={currentPic} alt="player avatar"></img>
+                <div>
+                    <button onClick={this.plusClick}>+</button><button onClick={this.minusClick}>-</button>
+                </div>
                 <div>
                     <button onClick={this.select}>select picture</button>
                 </div>
