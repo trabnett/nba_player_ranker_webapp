@@ -15,7 +15,10 @@ class AddPlayer extends Component {
         .then(results => {
             return results.json()
           }).then(data => {
-            console.log(data.name, "<---data")
+            if (data.error) {
+                return (this.setState({player: ""}, () => alert(data.error)))
+            }
+            console.log(data, "<---data")
             this.setState({player: data.name}, () => {
                 this.props.toggleSelectPic(this.state.player)
             })

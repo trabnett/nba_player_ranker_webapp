@@ -32,6 +32,7 @@ class SelectPic extends Component {
             .then(results => {
                 return results.json()
               }).then(data => {
+                  console.log(data, "data")
                 let picArray = JSON.parse(data)
                 this.setState({picArray: picArray.pics}, () => {
                     console.log(this.state, "+++++++++++++")
