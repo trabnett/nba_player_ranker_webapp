@@ -8,6 +8,9 @@ class PlayerCard extends Component {
       rating: 0
     }
   }
+  toggleShowModal = () => {
+    this.props.toggleShowModal(this.state.player)
+  }
   plusClick = () => {
     this.setState({player: this.props.player.name, rating: this.props.player.rating + 1}, () => {
       console.log(this.props.player.name, this.state.player, this.props.player.rating, this.state.rating, "<===plus click before set state")
@@ -31,6 +34,9 @@ class PlayerCard extends Component {
     return (
       <div>
         <div><img className="player_pic" src={this.props.player.picture_url} alt="player avatar"/></div>
+        <div>
+          <button onClick={this.toggleShowModal}>Watch Videos</button>
+        </div>
         <ul>
           <li>Name: {this.props.player.name}</li>
           <li>Ppg: {this.props.player.ppg}</li>
@@ -39,7 +45,7 @@ class PlayerCard extends Component {
           <li>Per: {this.props.player.per}</li>
           <li>rating: {this.props.player.rating}</li>
         </ul>
-        <div key={this.props.player.name}><button onClick={this.plusClick}>+</button><button onClick={this.minusClick}>-</button></div>
+        <div><button onClick={this.plusClick}>+</button><button onClick={this.minusClick}>-</button></div>
       </div>
       
     );

@@ -4,6 +4,7 @@ import Footer from './footer'
 import PlayerCard from './player_card'
 import AddPlayer from './add_player'
 import SelectPic from './select_pic'
+import Modal from './modal'
 import './App.css';
 
 class App extends Component {
@@ -12,7 +13,9 @@ class App extends Component {
     this.state={
       newPlayer: "",
       players: [],
+      videos: [],
       selectPic: false,
+      showVideos: false,
       counter: 0
     }
   }
@@ -51,6 +54,18 @@ class App extends Component {
       })
     })
   }
+  toggleShowModal = (player) => {
+    fetch(`http://127.0.0.1:5000/videos?name=${player}`)
+    .then(results => {
+        return results.json()
+      }).then(data => {
+          console.log(data, "data")
+        let videos = JSON.parse(data)
+        this.setState({videos: videos.videos,newPlayer: player, showVideos: !this.state.showVideos}, () => {
+            console.log(this.state, "+++++++++++++")
+        })
+      })
+  }
   getPlayers = () => {
     fetch('http://127.0.0.1:5000/getall')
     .then(results => {
@@ -71,14 +86,23 @@ class App extends Component {
       )
     }
     let ratingChange = (name, rating) => {this.ratingChange(name, rating)}
+    let toggleShowModal = (player) => {this.toggleShowModal(player)}
     return (
       <div className="App">
+      { this.state.toggleShowModal ? <div onClick={this.toggleShowModal} className="back-drop"></div> : null }
+      <Modal
+          className="modal"
+          player={this.state.newPlayer}
+          videos={this.state.videos}
+          show={this.state.showVideos}
+          close={this.toggleShowModal}>
+      </Modal>
         <Header/>
         <AddPlayer toggleSelectPic={this.toggleSelectPic}/>
           <div>
             {this.state.players.map(function(player, idx){
               return(
-                <PlayerCard key={idx +1} player={player} ratingChange={ratingChange}/>
+                <PlayerCard key={idx +1} player={player} ratingChange={ratingChange} toggleShowModal={toggleShowModal}/>
               )
             })}
           </div>
