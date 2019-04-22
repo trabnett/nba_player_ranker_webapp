@@ -9,21 +9,17 @@ class PlayerCard extends Component {
     }
   }
   toggleShowModal = () => {
-    this.props.toggleShowModal(this.state.player)
+    this.props.toggleShowModal(this.props.player.name)
   }
   plusClick = () => {
     this.setState({player: this.props.player.name, rating: this.props.player.rating + 1}, () => {
-      console.log(this.props.player.name, this.state.player, this.props.player.rating, this.state.rating, "<===plus click before set state")
       this.props.ratingChange(this.props.player.name, this.state.rating)
-      console.log(this.props.player.name, this.state.player, this.props.player.rating, this.state.rating, "<===plus click")
     })
   }
   minusClick = () => {
     if (this.state.rating > 0){
-      console.log(this.props.player.name, this.state.player, this.props.player.rating, this.state.rating, "<===negative click before set state")
       this.setState({player: this.props.player.name, rating: this.props.player.rating - 1}, () => {
-        this.props.ratingChange(this.props.player.name, this.state.rating)
-        console.log(this.props.player.name, this.state.player, this.props.player.rating, this.state.rating, "<===negative click")
+      this.props.ratingChange(this.props.player.name, this.state.rating)
       })
     }
   }

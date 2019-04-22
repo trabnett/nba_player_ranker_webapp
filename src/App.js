@@ -6,7 +6,6 @@ import AddPlayer from './add_player'
 import SelectPic from './select_pic'
 import Modal from './modal'
 import './App.css';
-import { timingSafeEqual } from 'crypto';
 
 class App extends Component {
   constructor(props){
@@ -17,15 +16,16 @@ class App extends Component {
       videos: [],
       selectPic: false,
       showVideos: false,
+      playing: false,
       counter: 0
     }
   }
+  closeModal = () => {this.setState({showVideos: false, playing: false})}
   sortByRating = (arr) => {
     let newArr = arr.sort(function(a,b){return a.rating-b.rating})
     this.setState({players: newArr})
   }
   ratingChange = (name, rating) => {
-    console.log(name, rating)
     this.state.players.forEach((player, idx) => {
       if (player.name === name){
         let newArray = [...this.state.players]
@@ -64,10 +64,8 @@ class App extends Component {
     .then(results => {
         return results.json()
       }).then(data => {
-          console.log(data, "data")
         let videos = JSON.parse(data)
-        this.setState({videos: videos.videos,newPlayer: player, showVideos: true}, () => {
-            console.log(this.state, "+++++++++++++")
+        this.setState({videos: videos.videos,newPlayer: player, showVideos: true, playing: true}, () => {
         })
       })
   }
@@ -76,7 +74,6 @@ class App extends Component {
     .then(results => {
       return results.json()
     }).then(data => {
-      console.log(data, "asdfasdfasdf")
       data.sort(function(a,b){return b.rating - a.rating})
       this.setState({players: data})
     })
@@ -92,25 +89,27 @@ class App extends Component {
     }
     let ratingChange = (name, rating) => {this.ratingChange(name, rating)}
     let toggleShowModal = (player) => {this.openModal(player)}
-    let closeModal = () => {this.setState({showVideos: false})}
     return (
       <div className="App">
         <Header/>
         { this.state.toggleShowModal ? <div onClick={this.toggleShowModal} className="back-drop"></div> : null }
-        <Modal
-          className="modal"
-          player={this.state.newPlayer}
-          videos={this.state.videos}
-          show={this.state.showVideos}
-          close={closeModal}>
-        </Modal>
-        <AddPlayer toggleSelectPic={this.toggleSelectPic} sortByRating={this.sortByRating}/>
-          <div>
-            {this.state.players.map(function(player, idx){
-              return(
-                <PlayerCard key={idx +1} player={player} ratingChange={ratingChange} toggleShowModal={toggleShowModal}/>
-              )
-            })}
+        <div className="player-list">
+          <Modal
+            className="modal"
+            showVideos={this.state.showVideos} 
+            player={this.state.newPlayer} 
+            videos={this.state.videos}
+            close={this.closeModal}
+            playing={this.state.playing}
+            />
+          <AddPlayer toggleSelectPic={this.toggleSelectPic} sortByRating={this.sortByRating}/>
+            <div>
+              {this.state.players.map(function(player, idx){
+                return(
+                  <PlayerCard key={idx +1} player={player} ratingChange={ratingChange} toggleShowModal={toggleShowModal}/>
+                )
+              })}
+            </div>
           </div>
         <Footer/>
       </div>

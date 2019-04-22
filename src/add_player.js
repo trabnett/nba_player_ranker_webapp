@@ -10,7 +10,15 @@ class AddPlayer extends Component {
     handleChange = (e) => {
         this.setState({player: e.target.value})
     }
+    keyDown = (e) => {
+      if (e.which === 13){
+        this.handleSubmit()
+      }
+    }
     handleSubmit = () => {
+      if (this.state.player === ""){
+        return null
+      }
         fetch(`http://127.0.0.1:5000/add?name=${this.state.player}`)
         .then(results => {
             return results.json()
@@ -18,7 +26,6 @@ class AddPlayer extends Component {
             if (data.error) {
                 return (this.setState({player: ""}, () => alert(data.error)))
             }
-            console.log(data, "<---data")
             this.setState({player: data.name}, () => {
                 this.props.toggleSelectPic(this.state.player)
             })
@@ -28,9 +35,9 @@ class AddPlayer extends Component {
     }
     render() {
       return (
-        <div>
-            <input type="text" value={this.state.player} onChange={this.handleChange}></input>
-            <button onClick={this.handleSubmit}>enter</button>
+        <div className="add-player">
+            <input className="new-player" type="text" value={this.state.player} onChange={this.handleChange} onKeyPress={this.keyDown} placeholder="Add A Player to the List"></input>
+            <button className="add-player-button" onClick={this.handleSubmit}>Enter</button>
         </div>
       )
     }

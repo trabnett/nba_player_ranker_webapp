@@ -12,5 +12,45 @@
   margin: auto;
   width: 5em;
 }
+.header {
+  width: 100%;
+  background-color: deepskyblue;
+  border-bottom: 1px solid black;
+  height: 5em;
+  position: fixed;
+}
+.header-div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.nba-logo {
+  max-height: 3em;
+  flex-basis: 2%;
+}
+.welcome {
+  flex-basis: 96%;
+}
 
+.add-player {
+  padding-top: 8em;
+}
+.add-player-button {
+  background-color: deepskyblue;
+  border-radius: 8px;
+  height: 3em;
+  outline: none;
+}
+.add-player-button:hover {
+  background-color: blue;
+}
+.new-player{
+  height: 2em;
+  font-size: 14px;
+  width: 12em;
+  outline-width: 0;
+}
+input{
+  outline:none;
+}
 
