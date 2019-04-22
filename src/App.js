@@ -6,6 +6,7 @@ import AddPlayer from './add_player'
 import SelectPic from './select_pic'
 import Modal from './modal'
 import './App.css';
+import { timingSafeEqual } from 'crypto';
 
 class App extends Component {
   constructor(props){
@@ -52,16 +53,20 @@ class App extends Component {
       }).then(data => {
         this.setState({players: data})
       })
+      this.getPlayers()
     })
   }
-  toggleShowModal = (player) => {
+  openModal = (player) => {
+    if (this.state.showVideos){
+      return null
+    }
     fetch(`http://127.0.0.1:5000/videos?name=${player}`)
     .then(results => {
         return results.json()
       }).then(data => {
           console.log(data, "data")
         let videos = JSON.parse(data)
-        this.setState({videos: videos.videos,newPlayer: player, showVideos: !this.state.showVideos}, () => {
+        this.setState({videos: videos.videos,newPlayer: player, showVideos: true}, () => {
             console.log(this.state, "+++++++++++++")
         })
       })
@@ -86,19 +91,20 @@ class App extends Component {
       )
     }
     let ratingChange = (name, rating) => {this.ratingChange(name, rating)}
-    let toggleShowModal = (player) => {this.toggleShowModal(player)}
+    let toggleShowModal = (player) => {this.openModal(player)}
+    let closeModal = () => {this.setState({showVideos: false})}
     return (
       <div className="App">
-      { this.state.toggleShowModal ? <div onClick={this.toggleShowModal} className="back-drop"></div> : null }
-      <Modal
+        <Header/>
+        { this.state.toggleShowModal ? <div onClick={this.toggleShowModal} className="back-drop"></div> : null }
+        <Modal
           className="modal"
           player={this.state.newPlayer}
           videos={this.state.videos}
           show={this.state.showVideos}
-          close={this.toggleShowModal}>
-      </Modal>
-        <Header/>
-        <AddPlayer toggleSelectPic={this.toggleSelectPic}/>
+          close={closeModal}>
+        </Modal>
+        <AddPlayer toggleSelectPic={this.toggleSelectPic} sortByRating={this.sortByRating}/>
           <div>
             {this.state.players.map(function(player, idx){
               return(

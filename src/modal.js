@@ -16,7 +16,10 @@ const modal = (props) => {
                     <span className="close-modal-btn" onClick={() => {props.close()}}>×</span>
                 </div>
                 <div className="modal-body">
-                    <ReactPlayer url={props.videos[0]} playing />
+                    <ReactPlayer url={props.videos[0]} />
+                </div>
+                <div>
+                    <button>+</button><button>-</button>
                 </div>
                 <div className="modal-footer">
                     <button className="btn-cancel" onClick={() => {props.close()}}>CLOSE</button>
