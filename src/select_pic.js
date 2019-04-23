@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Button from 'react-bootstrap/Button';
+import PicCarousel from './pic_carousel'
 import './App.css';
 
 class SelectPic extends Component {
@@ -25,31 +27,18 @@ class SelectPic extends Component {
                        'Content-Type': 'application/x-www-form-urlencoded',
               })
         })
-        this.props.toggleSelectPic("")
+        this.props.closeSelectPic()
     }
-    componentWillMount(){
-        this.setState({player: this.props.player}, () => {
-            fetch(`http://127.0.0.1:5000/pictures?name=${this.state.player}`)
-            .then(results => {
-                return results.json()
-              }).then(data => {
-                let picArray = JSON.parse(data)
-                this.setState({picArray: picArray.pics}, () => {
-                })
-              })
-        })
+    componentDidMount(){
+        this.setState({picArray: this.props.picArray})
     }
     render() {
-        let currentPic = this.state.picArray[this.state.count]
         return (
             <div className="pic-select">
                 <h1>{this.state.player}</h1>
-                <img className="player_pic" src={currentPic} alt="player avatar"></img>
+                <PicCarousel payload={this.props.picArray}/>
                 <div>
-                    <button onClick={this.plusClick}>+</button><button onClick={this.minusClick}>-</button>
-                </div>
-                <div>
-                    <button onClick={this.select}>select picture</button>
+                    <Button variant="primary" onClick={this.select}>Select Picture</Button>
                 </div>
             </div>
         );

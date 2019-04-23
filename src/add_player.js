@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 class AddPlayer extends Component {
     constructor(props){
@@ -27,7 +29,7 @@ class AddPlayer extends Component {
                 return (this.setState({player: ""}, () => alert(data.error)))
             }
             this.setState({player: data.name}, () => {
-                this.props.toggleSelectPic(this.state.player)
+                this.props.openSelectPic(this.state.player)
             })
           })
         
@@ -36,8 +38,13 @@ class AddPlayer extends Component {
     render() {
       return (
         <div className="add-player">
-            <input className="new-player" type="text" value={this.state.player} onChange={this.handleChange} onKeyPress={this.keyDown} placeholder="Add A Player to the List"></input>
-            <button className="add-player-button" onClick={this.handleSubmit}>Enter</button>
+          <Form>
+            <Form.Group controlId="formGroupEmail">
+              <Form.Label>Add A Player to the List</Form.Label>
+              <Form.Control type="email" placeholder="Add A Player to the List" value={this.state.player} onChange={this.handleChange} onKeyPress={this.keyDown}/>
+            </Form.Group>
+            <Button variant="primary" onClick={this.handleSubmit}>Enter</Button>
+          </Form>
         </div>
       )
     }

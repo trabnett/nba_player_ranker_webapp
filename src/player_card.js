@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Button from 'react-bootstrap/Button';
 
 class PlayerCard extends Component {
   constructor(props){
@@ -31,7 +32,7 @@ class PlayerCard extends Component {
       <div>
         <div><img className="player_pic" src={this.props.player.picture_url} alt="player avatar"/></div>
         <div>
-          <button onClick={this.toggleShowModal}>Watch Videos</button>
+          <Button variant="primary" onClick={this.toggleShowModal}>Watch Videos</Button>
         </div>
         <ul>
           <li>Name: {this.props.player.name}</li>
@@ -41,7 +42,14 @@ class PlayerCard extends Component {
           <li>Per: {this.props.player.per}</li>
           <li>rating: {this.props.player.rating}</li>
         </ul>
-        <div><button onClick={this.plusClick}>+</button><button onClick={this.minusClick}>-</button></div>
+        <div>
+          <Button onClick={this.plusClick} variant="primary" size="sm">
+            +
+          </Button>
+          <Button onClick={this.minusClick} variant="primary" size="sm">
+            -
+          </Button>
+        </div>
       </div>
       
     );

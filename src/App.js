@@ -13,6 +13,7 @@ class App extends Component {
     this.state={
       newPlayer: "",
       players: [],
+      pics: [],
       videos: [],
       selectPic: false,
       showVideos: false,
@@ -45,16 +46,21 @@ class App extends Component {
     })
 
   }
-  toggleSelectPic = (newPlayer) => {
-    this.setState({newPlayer: newPlayer, selectPic: !this.state.selectPic}, () => {
-      fetch('http://127.0.0.1:5000/getall')
-      .then(results => {
-        return results.json()
-      }).then(data => {
-        this.setState({players: data})
-      })
-      this.getPlayers()
+  openSelectPic = (newPlayer) => {
+    this.setState({newPlayer}, () => {
+      fetch(`http://127.0.0.1:5000/pictures?name=${this.state.newPlayer}`)
+            .then(results => {
+                return results.json()
+              }).then(data => {
+                let picArray = JSON.parse(data)
+                this.setState({pics: picArray.pics}, () => this.setState({selectPic: true}))
+              })
+
     })
+  }
+  closeSelectPic = () => {
+    this.getPlayers()
+    this.setState({selectPic: false})
   }
   openModal = (player) => {
     if (this.state.showVideos){
@@ -84,7 +90,7 @@ class App extends Component {
   render() {
     if (this.state.selectPic){
       return(
-        <SelectPic player={this.state.newPlayer} toggleSelectPic={this.toggleSelectPic}/>
+        <SelectPic player={this.state.newPlayer} openSelectPic={this.openSelectPic} closeSelectPic={this.closeSelectPic} picArray={this.state.pics}/>
       )
     }
     let ratingChange = (name, rating) => {this.ratingChange(name, rating)}
@@ -102,7 +108,7 @@ class App extends Component {
             close={this.closeModal}
             playing={this.state.playing}
             />
-          <AddPlayer toggleSelectPic={this.toggleSelectPic} sortByRating={this.sortByRating}/>
+          <AddPlayer openSelectPic={this.openSelectPic} sortByRating={this.sortByRating}/>
             <div>
               {this.state.players.map(function(player, idx){
                 return(

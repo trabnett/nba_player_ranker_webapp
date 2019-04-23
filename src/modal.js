@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import ReactPlayer from 'react-player';
+import Button from 'react-bootstrap/Button';
+import ControlledCarousel from './carousel'
 import './Modal.css'
 
 class Modal2 extends Component {
@@ -12,16 +13,6 @@ class Modal2 extends Component {
   close = () =>{
       this.setState({count: 0})
       this.props.close()
-  }
-  changeVideo = (n) => {
-      console.log(this.props.videos.length, "number of vids")
-        if (this.state.count === 0 && n < 0){
-            return null
-        }
-        if (this.state.count === this.props.videos.length - 1 && n > 0){
-            return null
-        }
-        this.setState({count: this.state.count + n}, () => console.log(this.state))
   }
   render(){
       if (!this.props.showVideos){
@@ -41,13 +32,10 @@ class Modal2 extends Component {
                     <span className="close-modal-btn" onClick={this.close}>×</span>
                 </div>
                 <div className="modal-body">
-                    <ReactPlayer url={this.props.videos[this.state.count]} playing={this.props.playing ? true : false}/>
-                </div>
-                <div>
-                    <button onClick={() => this.changeVideo(1)}>+</button><button onClick={() => this.changeVideo(-1)}>-</button>
+                    <ControlledCarousel payload={this.props.videos} playing={this.props.playing}/>
                 </div>
                 <div className="modal-footer">
-                    <button className="btn-cancel" onClick={this.close}>CLOSE</button>
+                    <Button variant="primary" onClick={this.close}>Close</Button>
                 </div>
             </div>
         </div>
