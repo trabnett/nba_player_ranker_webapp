@@ -17,31 +17,40 @@ class PicCarousel extends Component {
       this.setState({
         index: selectedIndex,
         direction: e.direction,
-      });
+      }, () =>  this.props.click(this.state.index));
     }
+
   
     render() {
-      const { index, direction } = this.state;
-  
-      return (
-        <Carousel
-          activeIndex={index}
-          direction={direction}
-          onSelect={this.handleSelect}
-        >
-            {this.props.payload.map(function(item,idx){
-                return(
-                    <Carousel.Item key={idx + 1}>
-                        <img
-                            className="d-block w-100"
-                            src={item}
-                            alt={`slide ${idx}`}
-                        />
-                    </Carousel.Item>
-                )
-            })}
-        </Carousel>
-      );
+        const { index, direction } = this.state;
+        return (
+            <div className="pic-container">
+                <Carousel
+                activeIndex={index}
+                direction={direction}
+                onSelect={this.handleSelect}
+                keyboard={true}
+                fade={true}
+                wrap={true}
+                slide={true}
+                className="mw-100"
+                >
+                    {this.props.payload.map(function(item,idx){
+                        return(
+                            <Carousel.Item key={idx + 1} >
+                                <div className="picture">
+                                    <img
+                                        className="mw-100"
+                                        src={item}
+                                        alt={`slide ${idx}`}
+                                    />
+                                </div>
+                            </Carousel.Item>
+                        )
+                    })}
+                </Carousel>
+            </div>
+        );
     }
   }
   

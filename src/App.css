@@ -3,8 +3,8 @@
 }
 
 .player_pic {
-  max-width: 5em;
-  max-height: 5em;
+  max-width: 10em;
+  max-height: 10em;
 }
 .pic-select {
   display: flex;
@@ -53,4 +53,9 @@
 input{
   outline:none;
 }
-
+.picture{
+  width: 10em;
+}
+.pic-container {
+  width: 10em;
+}
