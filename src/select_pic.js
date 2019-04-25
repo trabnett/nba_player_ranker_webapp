@@ -32,12 +32,17 @@ class SelectPic extends Component {
         this.setState({picArray: this.props.picArray})
     }
     render() {
+        var buttonStyle = {
+            margin: "1em"
+          };
         return (
-            <div className="pic-select">
-                <h1>{this.state.player}</h1>
-                <PicCarousel click={this.click} payload={this.props.picArray}/>
-                <div>
-                    <Button variant="primary" onClick={this.select}>Select Picture</Button>
+            <div>
+                <div className="pic-select">
+                    <h1>{this.state.player}</h1>
+                    <PicCarousel click={this.click} payload={this.props.picArray}/>
+                    <div>
+                        <Button style={buttonStyle} variant="primary" onClick={this.select}>Select Picture</Button>
+                    </div>
                 </div>
             </div>
         );

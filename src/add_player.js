@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
 import Form from 'react-bootstrap/Form';
 
 class AddPlayer extends Component {
     constructor(props){
         super(props);
         this.state={
-          player: ""
+          player: "",
+          loading: false
         }
       }
     handleChange = (e) => {
@@ -18,6 +20,7 @@ class AddPlayer extends Component {
       }
     }
     handleSubmit = () => {
+      this.setState({loading: true})
       if (this.state.player === ""){
         return null
       }
@@ -32,18 +35,34 @@ class AddPlayer extends Component {
                 this.props.openSelectPic(this.state.player)
             })
           })
-        
-        
+    }
+    componentDidMount(){
+      this.setState({loading: false})
     }
     render() {
+      let formStyle = {
+        margin: "auto"
+      }
+      let btn = ""
+      this.state.loading ? btn = <Button variant="primary" disabled>
+      <Spinner
+        as="span"
+        animation="grow"
+        size="sm"
+        role="status"
+        aria-hidden="true"
+      />
+      Loading...
+    </Button> : btn = <Button variant="primary" onClick={this.handleSubmit}>Enter</Button>
+     
       return (
         <div className="add-player">
           <Form>
             <Form.Group controlId="formGroupEmail">
               <Form.Label>Add A Player to the List</Form.Label>
-              <Form.Control type="email" placeholder="Add A Player to the List" value={this.state.player} onChange={this.handleChange} onKeyPress={this.keyDown}/>
+              <Form.Control className="w-50" style={formStyle} type="email" placeholder="Add A Player to the List" value={this.state.player} onChange={this.handleChange} onKeyPress={this.keyDown}/>
             </Form.Group>
-            <Button variant="primary" onClick={this.handleSubmit}>Enter</Button>
+            {btn}
           </Form>
         </div>
       )
