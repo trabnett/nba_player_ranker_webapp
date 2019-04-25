@@ -3,7 +3,7 @@ import Header from './header'
 import Footer from './footer'
 import PlayerCard from './player_card'
 import AddPlayer from './add_player'
-import SelectPic from './select_pic'
+import PicModal from './pic_modal'
 import Modal from './modal'
 import './App.css';
 
@@ -22,6 +22,7 @@ class App extends Component {
     }
   }
   closeModal = () => {this.setState({showVideos: false, playing: false})}
+
   sortByRating = (arr) => {
     let newArr = arr.sort(function(a,b){return a.rating-b.rating})
     this.setState({players: newArr})
@@ -81,20 +82,21 @@ class App extends Component {
       return results.json()
     }).then(data => {
       data.sort(function(a,b){return b.rating - a.rating})
-      this.setState({players: data})
+      this.setState({players: data, showVideos: false})
     })
   }
   componentDidMount(){
     this.getPlayers()
   }
   render() {
-    if (this.state.selectPic){
-      return(
-        <SelectPic player={this.state.newPlayer} openSelectPic={this.openSelectPic} closeSelectPic={this.closeSelectPic} picArray={this.state.pics}/>
-      )
-    }
+    // if (this.state.selectPic){
+    //   return(
+    //     <SelectPic player={this.state.newPlayer} openSelectPic={this.openSelectPic} closeSelectPic={this.closeSelectPic} picArray={this.state.pics}/>
+    //   )
+    // }
     let ratingChange = (name, rating) => {this.ratingChange(name, rating)}
     let toggleShowModal = (player) => {this.openModal(player)}
+    let showVideos = this.state.showVideos
     return (
       <div className="App">
         <Header/>
@@ -108,11 +110,18 @@ class App extends Component {
             close={this.closeModal}
             playing={this.state.playing}
             />
+            <PicModal 
+              className="modal"
+              selectPic={this.state.selectPic} 
+              player={this.state.newPlayer} 
+              pics={this.state.pics}
+              close={this.closeSelectPic}
+              playing={this.state.playing}/>
           <AddPlayer openSelectPic={this.openSelectPic} sortByRating={this.sortByRating}/>
             <div>
               {this.state.players.map(function(player, idx){
                 return(
-                  <PlayerCard key={idx +1} player={player} ratingChange={ratingChange} toggleShowModal={toggleShowModal}/>
+                  <PlayerCard key={idx +1} idx={idx} player={player} showVideos={showVideos} ratingChange={ratingChange} toggleShowModal={toggleShowModal}/>
                 )
               })}
             </div>

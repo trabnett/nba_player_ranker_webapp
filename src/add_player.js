@@ -7,7 +7,7 @@ class AddPlayer extends Component {
     constructor(props){
         super(props);
         this.state={
-          player: "",
+          player: '',
           loading: false
         }
       }
@@ -20,37 +20,44 @@ class AddPlayer extends Component {
       }
     }
     handleSubmit = () => {
-      this.setState({loading: true})
-      if (this.state.player === ""){
+      if (this.state.player === ''){
         return null
       }
-        fetch(`http://127.0.0.1:5000/add?name=${this.state.player}`)
-        .then(results => {
-            return results.json()
-          }).then(data => {
-            if (data.error) {
-                return (this.setState({player: ""}, () => alert(data.error)))
-            }
-            this.setState({player: data.name}, () => {
-                this.props.openSelectPic(this.state.player)
-            })
-          })
+      this.setState({loading: true})
+      fetch(`http://127.0.0.1:5000/add?name=${this.state.player}`)
+      .then(results => {
+          return results.json()
+      }).then(data => {
+        if (data.error) {
+            return (this.setState({player: ''}, () => alert(data.error)))
+        }
+        this.setState({player: data.name}, () => {
+            this.props.openSelectPic(this.state.player)
+            setTimeout(
+              function() {
+                  this.setState({loading: false, player: ''});
+              }
+              .bind(this),
+              3000
+            )
+        })
+      })
     }
     componentDidMount(){
       this.setState({loading: false})
     }
     render() {
       let formStyle = {
-        margin: "auto"
+        margin: 'auto'
       }
-      let btn = ""
+      let btn = ''
       this.state.loading ? btn = <Button variant="primary" disabled>
       <Spinner
-        as="span"
-        animation="grow"
-        size="sm"
-        role="status"
-        aria-hidden="true"
+        as='span'
+        animation='grow'
+        size='sm'
+        role='status'
+        aria-hidden='true'
       />
       Loading...
     </Button> : btn = <Button variant="primary" onClick={this.handleSubmit}>Enter</Button>
