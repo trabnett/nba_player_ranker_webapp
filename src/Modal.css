@@ -2,10 +2,15 @@
     background: white;
     border: 1px solid #d0cccc;
     box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
-    margin: 100px auto 0;
+    margin: -13em -21em auto;
     transition: all .8s;
-    width: 60%;
+    max-width: 670px;
+    min-width: 670px;
+    min-height: 475px;
     position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
 }
 
 .modal-header {
@@ -26,11 +31,12 @@
 .modal-body {
     padding: 10px 15px;
     text-align: center;
+    min-height: 385px;
 }
 
 .modal-footer {
     background: #263238;
-    height: 35px;
+    height: 55px;
     padding: 15px;
 }
 
@@ -41,6 +47,11 @@
     font-size: 30px;
     margin: 0;
 }
+.spinner-conatainer{
+    position: absolute;
+    margin: auto;
+
+  }
 
 .close-modal-btn:hover {
     color: black;
@@ -78,4 +89,11 @@
     margin: 15px;
     padding: 10px;
     font-weight: bold;
+}
+.buffer{
+    height: 8em;
+    opacity: 0;
+}
+.centerer{
+    margin: auto;
 }

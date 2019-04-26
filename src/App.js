@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import Header from './header'
-import Footer from './footer'
-import PlayerCard from './player_card'
-import AddPlayer from './add_player'
-import SelectPic from './select_pic'
-import Modal from './modal'
+import Header from './header';
+import Footer from './footer';
+import PlayerCard from './player_card';
+import AddPlayer from './add_player';
+import PicModal from './pic_modal';
+import InfoModal from './info_modal';
+import Modal from './modal';
 import './App.css';
 
 class App extends Component {
@@ -13,14 +14,44 @@ class App extends Component {
     this.state={
       newPlayer: "",
       players: [],
+      pics: [],
       videos: [],
       selectPic: false,
       showVideos: false,
+      videoSpinner: false,
+      showInfo: false,
       playing: false,
       counter: 0
     }
   }
-  closeModal = () => {this.setState({showVideos: false, playing: false})}
+  openInfoModal = () => {this.setState({showInfo: true})}
+  closeInfoModal = () => {this.setState({showInfo: false})}
+
+  openModal = (player) => {
+    if (this.state.showVideos){
+      return null
+    }
+    this.setState({showVideos: true})
+    fetch(`http://127.0.0.1:5000/videos?name=${player}`)
+    .then(results => {
+        return results.json()
+      }).then(data => {
+        let videos = JSON.parse(data)
+        this.setState({videos: videos.videos,newPlayer: player, playing: true}, () => {
+        })
+      })
+  }
+  closeModal = () => {this.setState({showVideos: false, playing: false, newPlayer: '', videos: []})}
+
+  getPlayers = () => {
+    fetch('http://127.0.0.1:5000/getall')
+    .then(results => {
+      return results.json()
+    }).then(data => {
+      data.sort(function(a,b){return b.rating - a.rating})
+      this.setState({players: data, showVideos: false})
+    })
+  }
   sortByRating = (arr) => {
     let newArr = arr.sort(function(a,b){return a.rating-b.rating})
     this.setState({players: newArr})
@@ -43,57 +74,44 @@ class App extends Component {
       }
       this.setState({counter: this.state.counter + 1})
     })
+  }
+  openSelectPic = (newPlayer) => {
+    this.setState({newPlayer}, () => {
+      fetch(`http://127.0.0.1:5000/pictures?name=${this.state.newPlayer}`)
+            .then(results => {
+                return results.json()
+              }).then(data => {
+                if (data.error){
+                  return alert(data.error)
+                }
+                let picArray = JSON.parse(data)
+                this.setState({pics: picArray.pics}, () => this.setState({selectPic: true}))
+              })
 
-  }
-  toggleSelectPic = (newPlayer) => {
-    this.setState({newPlayer: newPlayer, selectPic: !this.state.selectPic}, () => {
-      fetch('http://127.0.0.1:5000/getall')
-      .then(results => {
-        return results.json()
-      }).then(data => {
-        this.setState({players: data})
-      })
-      this.getPlayers()
     })
   }
-  openModal = (player) => {
-    if (this.state.showVideos){
-      return null
-    }
-    fetch(`http://127.0.0.1:5000/videos?name=${player}`)
-    .then(results => {
-        return results.json()
-      }).then(data => {
-        let videos = JSON.parse(data)
-        this.setState({videos: videos.videos,newPlayer: player, showVideos: true, playing: true}, () => {
-        })
-      })
+  closeSelectPic = () => {
+    this.getPlayers()
+    this.setState({selectPic: false})
   }
-  getPlayers = () => {
-    fetch('http://127.0.0.1:5000/getall')
-    .then(results => {
-      return results.json()
-    }).then(data => {
-      data.sort(function(a,b){return b.rating - a.rating})
-      this.setState({players: data})
-    })
-  }
+
   componentDidMount(){
     this.getPlayers()
   }
   render() {
-    if (this.state.selectPic){
-      return(
-        <SelectPic player={this.state.newPlayer} toggleSelectPic={this.toggleSelectPic}/>
-      )
-    }
     let ratingChange = (name, rating) => {this.ratingChange(name, rating)}
     let toggleShowModal = (player) => {this.openModal(player)}
+    let showVideos = this.state.showVideos
     return (
       <div className="App">
-        <Header/>
+        <Header openInfoModal={this.openInfoModal} closeInfoModal={this.closeInfoModal} showInfo={this.state.showInfo}/>
         { this.state.toggleShowModal ? <div onClick={this.toggleShowModal} className="back-drop"></div> : null }
         <div className="player-list">
+          <InfoModal
+            className="modal"
+            showInfo={this.state.showInfo}
+            close={this.closeInfoModal}
+          />
           <Modal
             className="modal"
             showVideos={this.state.showVideos} 
@@ -101,12 +119,20 @@ class App extends Component {
             videos={this.state.videos}
             close={this.closeModal}
             playing={this.state.playing}
+            videoSpinner={this.state.videoSpinner}
             />
-          <AddPlayer toggleSelectPic={this.toggleSelectPic} sortByRating={this.sortByRating}/>
+            <PicModal 
+              className="modal"
+              selectPic={this.state.selectPic} 
+              player={this.state.newPlayer} 
+              pics={this.state.pics}
+              close={this.closeSelectPic}
+              playing={this.state.playing}/>
+          <AddPlayer openSelectPic={this.openSelectPic} sortByRating={this.sortByRating}/>
             <div>
               {this.state.players.map(function(player, idx){
                 return(
-                  <PlayerCard key={idx +1} player={player} ratingChange={ratingChange} toggleShowModal={toggleShowModal}/>
+                  <PlayerCard key={idx +1} idx={idx} player={player} showVideos={showVideos} ratingChange={ratingChange} toggleShowModal={toggleShowModal}/>
                 )
               })}
             </div>
