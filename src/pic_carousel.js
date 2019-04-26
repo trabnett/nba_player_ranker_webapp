@@ -23,8 +23,11 @@ class PicCarousel extends Component {
   
     render() {
         const { index, direction } = this.state;
+        let picStyle = {
+            "maxHeight": "25em"
+        }
         return (
-            <div className="pic-container">
+            <div className="select-pic-container">
                 <Carousel
                 activeIndex={index}
                 direction={direction}
@@ -40,6 +43,7 @@ class PicCarousel extends Component {
                             <Carousel.Item key={idx + 1} >
                                 <div className="picture">
                                     <img
+                                        style={picStyle}
                                         className="mw-100"
                                         src={item}
                                         alt={`slide ${idx}`}

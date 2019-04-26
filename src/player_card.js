@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button';
-import Spinner from 'react-bootstrap/Spinner';
+import { Spinner } from 'reactstrap';
 
 class PlayerCard extends Component {
   constructor(props){
@@ -50,12 +50,15 @@ class PlayerCard extends Component {
               role='status'
               aria-hidden='true'
             />
-            Loading...
+            <span>   Loading...</span>
           </Button> :
     btn = <Button variant="primary" onClick={this.toggleShowModal} >Watch Videos</Button>
+    let cardStyle = {
+      "minWidth": "35em"
+    }
     return (
       <div className="card-container">
-        <Card border="secondary">
+        <Card style={cardStyle} border="secondary">
           <Card.Header as="h5">{this.props.player.name}</Card.Header>
           <Card.Body>
             <div className="card-content">
@@ -84,16 +87,16 @@ class PlayerCard extends Component {
                   Down Vote
                 </Button>
               </div>
-              <div>
+              <div className="info-box">
                 <Card.Title>Career Stats:</Card.Title>
-                <Card.Text>
-                <table className="rank">
+                <div>
+                <table >
                   <thead>
                     <tr>
                       <th>PPG</th>
-                      <th>Assists</th>
-                      <th>Rebounds</th>
-                      <th>Per</th>
+                      <th>AST</th>
+                      <th>REB</th>
+                      <th>PER</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -105,7 +108,7 @@ class PlayerCard extends Component {
                     </tr>
                   </tbody>
                 </table>
-                </Card.Text>
+                </div>
                 {btn}
               </div>
           </div>

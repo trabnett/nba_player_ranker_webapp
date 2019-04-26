@@ -19,18 +19,22 @@
   height: 5em;
   position: fixed;
   z-index: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .header-div {
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: center; */
 }
 .nba-logo {
   max-height: 3em;
-  flex-basis: 2%;
+  margin-top: 1em;
+  margin-left: .5em;
 }
 .welcome {
-  flex-basis: 96%;
+  line-height: 2em;
 }
 
 .add-player {
@@ -54,12 +58,19 @@
 input{
   outline:none;
 }
-.picture{
-  width: 10em;
+table{
+  margin: 0 auto;
+  line-height: 2rem;
 }
 .pic-container {
   width: 10em;
   height: 15em;
+  line-height: 8em;
+}
+.select-pic-container {
+  width: 40em;
+  height: 100%;
+  line-height: 8em;
 }
 .card-content{
   display: flex;
@@ -76,9 +87,17 @@ input{
 }
 .rank {
   height: 100%;
+  margin-right: 5rem;
+}
+.info-box {
+  margin-left: 5rem;
+  line-height: 3.8em;
 }
 .rank-number {
-  font-size: 4em;
+  font-size: 6em;
   color: gold;
   text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.5);
+}
+.info-cards {
+  display: flex;
 }

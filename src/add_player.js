@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import { Spinner } from 'reactstrap';
 import Button from 'react-bootstrap/Button';
-import Spinner from 'react-bootstrap/Spinner';
 import Form from 'react-bootstrap/Form';
 
 class AddPlayer extends Component {
@@ -59,7 +59,7 @@ class AddPlayer extends Component {
         role='status'
         aria-hidden='true'
       />
-      Loading...
+      <span> Loading...</span>
     </Button> : btn = <Button variant="primary" onClick={this.handleSubmit}>Enter</Button>
      
       return (
@@ -67,7 +67,7 @@ class AddPlayer extends Component {
           <Form>
             <Form.Group controlId="formGroupEmail">
               <Form.Label>Add A Player to the List</Form.Label>
-              <Form.Control className="w-50" style={formStyle} type="email" placeholder="Add A Player to the List" value={this.state.player} onChange={this.handleChange} onKeyPress={this.keyDown}/>
+              <Form.Control className="w-50" style={formStyle} type="text" placeholder="Add A Player to the List" value={this.state.player} onChange={this.handleChange} onKeyPress={this.keyDown}/>
             </Form.Group>
             {btn}
           </Form>

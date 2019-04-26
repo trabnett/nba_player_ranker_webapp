@@ -48,7 +48,7 @@ class PicModal extends Component {
                     }}>
                     <div className="centerer">
                         <div className="modal-header">
-                            <h3>{this.props.player}</h3>
+                            <h3>Please Select a Profile Picture for {this.props.player}</h3>
                             <span className="close-modal-btn" onClick={this.close}>×</span>
                         </div>
                         <div className="modal-body">

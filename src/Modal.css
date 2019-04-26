@@ -5,6 +5,8 @@
     margin: -13em -21em auto;
     transition: all .8s;
     max-width: 670px;
+    min-width: 670px;
+    min-height: 475px;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -29,6 +31,7 @@
 .modal-body {
     padding: 10px 15px;
     text-align: center;
+    min-height: 385px;
 }
 
 .modal-footer {
@@ -44,6 +47,11 @@
     font-size: 30px;
     margin: 0;
 }
+.spinner-conatainer{
+    position: absolute;
+    margin: auto;
+
+  }
 
 .close-modal-btn:hover {
     color: black;
