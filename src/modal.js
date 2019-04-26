@@ -20,14 +20,10 @@ class Modal extends Component {
   componentWillMount(){
       this.setState({videoSpinner: true})
   }
-//   componentWillUnmount() {
-//     this.setState({videoSpinner: true}, () => clearInterval(this.interval))
-//   }
   render(){
     if (!this.props.showVideos){
         return null
     }
-    //   this.interval = setInterval(() => this.setState({videoSpinner: false}, () => console.log(this.state, "hey")), 3000)
     let content
     let videoHide = {}
     let name = this.props.player
@@ -49,14 +45,9 @@ class Modal extends Component {
     } else {
         content = null
     }
-    console.log(this.state, "modal state at render")
+
     return(
-        <div style={{
-            height: '25em'
-        }}>
-            <div className="buffer">
-                <p>hidden buffer</p>
-            </div>
+        <div>
             <div className="modal-wrapper"
                 style={{
                     transform: this.props.showVideos ? 'translateY(0vh)' : 'translateY(-100vh)',

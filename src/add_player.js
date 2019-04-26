@@ -24,12 +24,12 @@ class AddPlayer extends Component {
         return null
       }
       this.setState({loading: true})
-      fetch(`http://127.0.0.1:5000/add?name=${this.state.player}`)
+      fetch(`https://player-ranker-server.herokuapp.com/add?name=${this.state.player}`)
       .then(results => {
           return results.json()
       }).then(data => {
         if (data.error) {
-            return (this.setState({player: ''}, () => alert(data.error)))
+            return (this.setState({player: '', loading: false}, () => alert(data.error)))
         }
         this.setState({player: data.name}, () => {
             this.props.openSelectPic(this.state.player)
@@ -51,16 +51,18 @@ class AddPlayer extends Component {
         margin: 'auto'
       }
       let btn = ''
-      this.state.loading ? btn = <Button variant="primary" disabled>
-      <Spinner
-        as='span'
-        animation='grow'
-        size='sm'
-        role='status'
-        aria-hidden='true'
-      />
-      <span> Loading...</span>
-    </Button> : btn = <Button variant="primary" onClick={this.handleSubmit}>Enter</Button>
+      this.state.loading ? 
+      btn = <Button variant="primary" disabled>
+              <Spinner
+                as='span'
+                animation='grow'
+                size='sm'
+                role='status'
+                aria-hidden='true'
+              />
+              <span> Loading...</span>
+            </Button> : 
+      btn = <Button variant="primary" onClick={this.handleSubmit}>Enter</Button>
      
       return (
         <div className="add-player">
@@ -76,4 +78,4 @@ class AddPlayer extends Component {
     }
   }
   
-  export default AddPlayer;
+export default AddPlayer;

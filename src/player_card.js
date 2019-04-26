@@ -7,7 +7,7 @@ class PlayerCard extends Component {
   constructor(props){
     super(props);
     this.state={
-      player: "",
+      player: '',
       rating: 0,
       counter: 0,
       loading: false

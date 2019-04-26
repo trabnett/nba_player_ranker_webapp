@@ -6,22 +6,22 @@ import './Modal.css'
 
 class PicModal extends Component {
     constructor(props){
-    super(props);
-    this.state={
-        count: 0
-    }
+        super(props);
+        this.state={
+            count: 0
+        }
     }
     select = () => {
-    let url = this.props.pics[this.state.count]
-    fetch(`http://127.0.0.1:5000/avatar?name=${this.props.player}&picture_url=${url}`, {
-        method: 'POST',
-        headers: new Headers({
-                    'Content-Type': 'application/x-www-form-urlencoded',
-            })
-    })
-    .then(results => {
-        this.props.close()
-    })
+        let url = this.props.pics[this.state.count]
+        fetch(`https://player-ranker-server.herokuapp.com/avatar?name=${this.props.player}&picture_url=${url}`, {
+            method: 'POST',
+            headers: new Headers({
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                })
+        })
+        .then(results => {
+            this.props.close()
+        })
     }
     click = (e) => {
         this.setState({count: e})
@@ -33,14 +33,9 @@ class PicModal extends Component {
         }
         var buttonStyle = {
             margin: "1em"
-          };
+        };
         return(
-            <div style={{
-                height: '25em'
-            }}>
-                <div className="buffer">
-                    <p>hidden buffer</p>
-                </div>
+            <div>
                 <div className="modal-wrapper"
                     style={{
                         transform: this.props.selectPic ? 'translateY(0vh)' : 'translateY(-100vh)',
