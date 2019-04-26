@@ -30,6 +30,7 @@ class ControlledCarousel extends Component {
           activeIndex={index}
           direction={direction}
           onSelect={this.handleSelect}
+          interval={null}
         >
             {this.props.payload.map(function(item,idx){
                 return(
