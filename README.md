@@ -24,11 +24,11 @@ This webapp is hosted on heroku at:
  $ cd nba_player_ranker_webapp  
 ``
 
-2. Install dependencies
+2. Install dependencies  
 ``
 $ npm install  
 ``
-3. Run
+3. Run  
 ``
 $ npm start  
 ``
