@@ -20,6 +20,6 @@ $ npm install
 $ npm start
 ``
 
-[gif1](https://github.com/trabnett/nba_player_ranker_webapp/blob/master/public/gifs/NBA1.gif)
-[gif2](https://github.com/trabnett/nba_player_ranker_webapp/blob/master/public/gifs/NBA2.gif)
-[gif3](https://github.com/trabnett/nba_player_ranker_webapp/blob/master/public/gifs/NBA3.gif)
+![gif1](https://github.com/trabnett/nba_player_ranker_webapp/blob/master/public/gifs/NBA1.gif)
+![gif2](https://github.com/trabnett/nba_player_ranker_webapp/blob/master/public/gifs/NBA2.gif)
+![gif3](https://github.com/trabnett/nba_player_ranker_webapp/blob/master/public/gifs/NBA3.gif)
