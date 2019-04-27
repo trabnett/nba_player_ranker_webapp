@@ -5,7 +5,7 @@ NBA Player Ranker is a one page React app that allows users to enter the name of
 This webapp is hosted on heroku at:
 [NBA Player Ranker webapp](https://nba-player-ranker.herokuapp.com/)
 
-#### dependencies and requirements:
+#### Dependencies and Requirements:
 
 + Node
 + React
@@ -18,10 +18,10 @@ This webapp is hosted on heroku at:
 #### Quick Start
 1. Clone the repo
 ``
- $ git clone https://github.com/trabnett/nba_player_ranker_webapp
+ $ git clone https://github.com/trabnett/nba_player_ranker_webapp  
 ``
 ``
- $ cd nba_player_ranker_webapp
+ $ cd nba_player_ranker_webapp  
 ``
 
 2. Install dependencies
@@ -30,7 +30,7 @@ $ npm install
 ``
 3. Run
 ``
-$ npm start
+$ npm start  
 ``
 
 ![gif1](https://github.com/trabnett/nba_player_ranker_webapp/blob/master/public/gifs/NBA1.gif)
