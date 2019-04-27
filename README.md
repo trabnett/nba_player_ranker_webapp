@@ -19,7 +19,7 @@ This webapp is hosted on heroku at:
 1. Clone the repo  
 ``
  $ git clone https://github.com/trabnett/nba_player_ranker_webapp  
-``
+``  
 ``
  $ cd nba_player_ranker_webapp  
 ``
