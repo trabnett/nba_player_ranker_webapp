@@ -14,13 +14,9 @@ class AddPlayer extends Component {
     handleChange = (e) => {
         this.setState({player: e.target.value})
     }
-    keyDown = (e) => {
-      if (e.which === 13){
-        this.handleSubmit()
-      }
-    }
     preventSubmit = (e) => {
       e.preventDefault();
+      this.handleSubmit();
     }
     handleSubmit = () => {
       if (this.state.player === ''){
@@ -69,10 +65,10 @@ class AddPlayer extends Component {
      
       return (
         <div className="add-player">
-          <Form>
+          <Form onSubmit={this.preventSubmit}>
             <Form.Group controlId="formGroupEmail">
               <Form.Label>Add A Player to the List</Form.Label>
-              <Form.Control className="w-50" style={formStyle} type="text" placeholder="Add A Player to the List" value={this.state.player} onSubmit={this.preventSubmit} onChange={this.handleChange} onKeyPress={this.keyDown}/>
+              <Form.Control className="w-50" style={formStyle} type="text" placeholder="Add A Player to the List" value={this.state.player} onChange={this.handleChange} />
             </Form.Group>
             {btn}
           </Form>

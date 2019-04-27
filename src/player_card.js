@@ -80,12 +80,14 @@ class PlayerCard extends Component {
               </div>
               <div className="pic-container">
                 <img className="player_pic" src={this.props.player.picture_url} alt="player avatar"/>
-                <Button onClick={this.plusClick} variant="primary" size="sm">
-                  Up Vote
-                </Button>
-                <Button onClick={this.minusClick} variant="primary" size="sm">
-                  Down Vote
-                </Button>
+                <div>
+                  <Button onClick={this.plusClick} variant="primary" size="sm">
+                    Up Vote
+                  </Button>
+                  <Button onClick={this.minusClick} variant="primary" size="sm">
+                    Down Vote
+                  </Button>
+                </div>
               </div>
               <div className="info-box">
                 <Card.Title>Career Stats:</Card.Title>
