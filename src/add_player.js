@@ -15,6 +15,7 @@ class AddPlayer extends Component {
         this.setState({player: e.target.value})
     }
     keyDown = (e) => {
+      console.log(e.which)
       if (e.which === 13){
         this.handleSubmit()
       }
