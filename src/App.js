@@ -5,6 +5,7 @@ import PlayerCard from './player_card';
 import AddPlayer from './add_player';
 import PicModal from './pic_modal';
 import InfoModal from './info_modal';
+import Button from 'react-bootstrap/Button';
 import Modal from './modal';
 import './App.css';
 
@@ -94,7 +95,13 @@ class App extends Component {
     this.getPlayers()
     this.setState({selectPic: false})
   }
-
+  getIp = () => {
+    fetch('https://api6.ipify.org?format=json')
+      .then(results=> {
+        return results.json()
+      }).then(data => 
+        console.log(data))
+  }
   componentDidMount(){
     this.getPlayers()
   }
@@ -129,6 +136,7 @@ class App extends Component {
               close={this.closeSelectPic}
               playing={this.state.playing}/>
           <AddPlayer openSelectPic={this.openSelectPic} sortByRating={this.sortByRating}/>
+          <Button style={{height: "55px"}}onClick={this.getIp}></Button>
             <div>
               {this.state.players.map(function(player, idx){
                 return(
