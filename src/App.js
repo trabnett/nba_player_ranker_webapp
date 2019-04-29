@@ -58,9 +58,9 @@ class App extends Component {
     this.setState({players: newArr})
   }
   ratingChange = (name, rating) => {
-    fetch(`http://127.0.0.1:5000/get_my_ip?ip=${this.state.ipAddress}`)
-    .then(results => {return results.json()
-  }).then(data => console.log(data))
+  //   fetch(`http://127.0.0.1:5000/get_my_ip?ip=${this.state.ipAddress}`)
+  //   .then(results => {return results.json()
+  // }).then(data => console.log(data))
     this.state.players.forEach((player, idx) => {
       if (player.name === name){
         let newArray = [...this.state.players]
