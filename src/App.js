@@ -5,7 +5,6 @@ import PlayerCard from './player_card';
 import AddPlayer from './add_player';
 import PicModal from './pic_modal';
 import InfoModal from './info_modal';
-import Button from 'react-bootstrap/Button';
 import Modal from './modal';
 import './App.css';
 
@@ -14,6 +13,7 @@ class App extends Component {
     super(props);
     this.state={
       newPlayer: "",
+      ipAddress: "",
       players: [],
       pics: [],
       videos: [],
@@ -33,7 +33,7 @@ class App extends Component {
       return null
     }
     this.setState({showVideos: true})
-    fetch(`https://player-ranker-server.herokuapp.com/videos?name=${player}`)
+    fetch(`http://127.0.0.1:5000/videos?name=${player}`)
     .then(results => {
         return results.json()
       }).then(data => {
@@ -45,7 +45,7 @@ class App extends Component {
   closeModal = () => {this.setState({showVideos: false, playing: false, newPlayer: '', videos: []})}
 
   getPlayers = () => {
-    fetch('https://player-ranker-server.herokuapp.com/getall')
+    fetch('http://127.0.0.1:5000/getall')
     .then(results => {
       return results.json()
     }).then(data => {
@@ -58,6 +58,9 @@ class App extends Component {
     this.setState({players: newArr})
   }
   ratingChange = (name, rating) => {
+    fetch(`http://127.0.0.1:5000/get_my_ip?ip=${this.state.ipAddress}`)
+    .then(results => {return results.json()
+  }).then(data => console.log(data))
     this.state.players.forEach((player, idx) => {
       if (player.name === name){
         let newArray = [...this.state.players]
@@ -65,7 +68,7 @@ class App extends Component {
         newArray.sort(function(a,b){return b.rating - a.rating})
         this.setState({players: newArray}, () => {
           // this.sortByRating(this.state.players)
-          fetch(`https://player-ranker-server.herokuapp.com/rating?name=${name}&rating=${rating}`, {
+          fetch(`http://127.0.0.1:5000/rating?name=${name}&rating=${rating}`, {
             method: 'POST',
             headers: new Headers({
                        'Content-Type': 'application/x-www-form-urlencoded',
@@ -78,7 +81,7 @@ class App extends Component {
   }
   openSelectPic = (newPlayer) => {
     this.setState({newPlayer}, () => {
-      fetch(`https://player-ranker-server.herokuapp.com/pictures?name=${this.state.newPlayer}`)
+      fetch(`http://127.0.0.1:5000/pictures?name=${this.state.newPlayer}`)
             .then(results => {
                 return results.json()
               }).then(data => {
@@ -95,15 +98,12 @@ class App extends Component {
     this.getPlayers()
     this.setState({selectPic: false})
   }
-  getIp = () => {
-    fetch('https://api6.ipify.org?format=json')
-      .then(results=> {
-        return results.json()
-      }).then(data => 
-        console.log(data))
-  }
   componentDidMount(){
     this.getPlayers()
+    fetch('https://api6.ipify.org?format=json')
+    .then(results=> {
+      return results.json()
+    }).then(data => this.setState({ipAddress: data.ip}, () => console.log(data)))
   }
   render() {
     let ratingChange = (name, rating) => {this.ratingChange(name, rating)}
@@ -136,7 +136,6 @@ class App extends Component {
               close={this.closeSelectPic}
               playing={this.state.playing}/>
           <AddPlayer openSelectPic={this.openSelectPic} sortByRating={this.sortByRating}/>
-          <Button style={{height: "55px"}}onClick={this.getIp}></Button>
             <div>
               {this.state.players.map(function(player, idx){
                 return(
