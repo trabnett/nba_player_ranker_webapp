@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-NBA Player Ranker is a one page React app that allows users to enter the name of a past or present NBA player, then retireves relevant data from the [NBA Player Ranker Server](https://github.com/trabnett/nba-player-ranker-server) which provides relevant pictures, info and videos from other internet sources. It also alows you to rank your list of players. Data is stored persistantly with Postgres.
+NBA Player Ranker is a one page React app that allows users to enter the name of a past or present NBA player, then retireves relevant data from the [NBA Player Ranker Server](https://github.com/trabnett/nba-player-ranker-server) which provides relevant pictures, info and videos from other internet sources. It also alows you to rank your list of players. Each User is allowed 2 votes every five minutes. Users are identified by their public IP address. Data is stored persistantly with Postgres.
 
 This webapp is hosted on heroku at:
 [NBA Player Ranker webapp](https://nba-player-ranker.herokuapp.com)

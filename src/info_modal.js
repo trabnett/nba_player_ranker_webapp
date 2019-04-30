@@ -33,7 +33,7 @@ class InfoModal extends Component {
                         </div>
                         <div className="modal-body">
                             <p>NBA Player Ranker is a full stack web app built by Tim Rabnett using Create React App for the front end and Flask for the backend. It allows users to enter the name of an NBA player, then uses Microsoft Azure to search the internet for relevant pictures, videos and info. It also scrapes a some statistics from Basketball Reference using Beautiful Soup. Data is stored persistantly in Postgres, although I reset the database every so often.</p>
-                            <p>To Use: Enter an NBA player into the search mechanism, choose a profile picture for the player, and then rank him against all of the other players. Use the 'Watch Videos' buttons to familiarize yourself with everyone on the list.</p>
+                            <p>To Use: Enter an NBA player into the search mechanism, choose a profile picture for the player, and then rank him against all of the other players. Users get two votes every five minutes based on their public IP address. Use the 'Watch Videos' buttons to familiarize yourself with everyone on the list.</p>
                             <p>Enjoy!</p>
                             <div className="info-cards"> 
                                 <Card style={{ width: '18rem', margin: 'auto' }}>

@@ -13,7 +13,7 @@ class PicModal extends Component {
     }
     select = () => {
         let url = this.props.pics[this.state.count]
-        fetch(`https://player-ranker-server.herokuapp.com/avatar?name=${this.props.player}&picture_url=${url}`, {
+        fetch(`http://127.0.0.1:5000/avatar?name=${this.props.player}&picture_url=${url}`, {
             method: 'POST',
             headers: new Headers({
                         'Content-Type': 'application/x-www-form-urlencoded',
@@ -21,6 +21,8 @@ class PicModal extends Component {
         })
         .then(results => {
             this.props.close()
+        }).catch(function() {
+            console.log("error");
         })
     }
     click = (e) => {

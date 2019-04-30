@@ -18,7 +18,7 @@
   border-bottom: 1px solid black;
   height: 5em;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -100,4 +100,14 @@ table{
 }
 .info-cards {
   display: flex;
+}
+.lockout {
+  padding-top: 5em;
+  position: fixed;
+  padding-bottom: 0px;
+  z-index: 1;
+  color: rgba(0, 0, 0, 1);
+  background-color: #ff9999;
+  width: 100%;
+  align-items: initial;
 }
