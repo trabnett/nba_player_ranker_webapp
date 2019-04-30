@@ -33,7 +33,7 @@ class App extends Component {
       return null
     }
     this.setState({showVideos: true})
-    fetch(`https://nba-player-ranker.herokuapp.com/videos?name=${player}`)
+    fetch(`https://player-ranker-server.herokuapp.com/videos?name=${player}`)
     .then(results => {
         return results.json()
       }).then(data => {
@@ -45,7 +45,7 @@ class App extends Component {
   closeModal = () => {this.setState({showVideos: false, playing: false, newPlayer: '', videos: []})}
 
   getPlayers = () => {
-    fetch('https://nba-player-ranker.herokuapp.com/getall')
+    fetch('https://player-ranker-server.herokuapp.com/getall')
     .then(results => {
       return results.json()
     }).then(data => {
@@ -58,7 +58,7 @@ class App extends Component {
     this.setState({players: newArr})
   }
   ratingChange = (name, rating) => {
-  //   fetch(`https://nba-player-ranker.herokuapp.com/get_my_ip?ip=${this.state.ipAddress}`)
+  //   fetch(`https://player-ranker-server.herokuapp.com/get_my_ip?ip=${this.state.ipAddress}`)
   //   .then(results => {return results.json()
   // }).then(data => console.log(data))
     this.state.players.forEach((player, idx) => {
@@ -68,7 +68,7 @@ class App extends Component {
         newArray.sort(function(a,b){return b.rating - a.rating})
         this.setState({players: newArray}, () => {
           // this.sortByRating(this.state.players)
-          fetch(`https://nba-player-ranker.herokuapp.com/rating?name=${name}&rating=${rating}`, {
+          fetch(`https://player-ranker-server.herokuapp.com/rating?name=${name}&rating=${rating}`, {
             method: 'POST',
             headers: new Headers({
                        'Content-Type': 'application/x-www-form-urlencoded',
@@ -81,7 +81,7 @@ class App extends Component {
   }
   openSelectPic = (newPlayer) => {
     this.setState({newPlayer}, () => {
-      fetch(`https://nba-player-ranker.herokuapp.com/pictures?name=${this.state.newPlayer}`)
+      fetch(`https://player-ranker-server.herokuapp.com/pictures?name=${this.state.newPlayer}`)
             .then(results => {
                 return results.json()
               }).then(data => {

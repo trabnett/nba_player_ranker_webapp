@@ -23,7 +23,7 @@ class AddPlayer extends Component {
         return null
       }
       this.setState({loading: true})
-      fetch(`https://nba-player-ranker.herokuapp.com/add?name=${this.state.player}`)
+      fetch(`https://player-ranker-server.herokuapp.com/add?name=${this.state.player}`)
       .then(results => {
           return results.json()
       }).then(data => {
