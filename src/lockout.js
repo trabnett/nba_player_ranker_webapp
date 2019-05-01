@@ -10,11 +10,13 @@ class Lockout extends Component {
     }
     render(){
         const Completionist = () => {
-            console.log("here")
             this.props.closeLockout()
             return null
         };
         const renderer = ({ minutes, seconds, completed }) => {
+            if (seconds < 10){
+                seconds = '0' + seconds
+            }
             if (completed) {
               // Render a completed state
               return <Completionist />;
