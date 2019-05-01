@@ -75,7 +75,7 @@ class App extends Component {
     this.setState({players: newArr})
   }
   getLockout = () => {
-    fetch(`https://player-ranker-server.herokuapp.com/get_my_ip?ip=${this.state.ipAddress}&bypass=ture`)
+    fetch(`https://player-ranker-server.herokuapp.com/get_my_ip?ip=${this.state.ipAddress}&bypass=true`)
     .then(results => {return results.json()
     })
     .then(data => {
