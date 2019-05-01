@@ -39,3 +39,5 @@ class Lockout extends Component {
     }
 }
 export default Lockout;
+
+https://player-ranker-server.herokuapp.com/
