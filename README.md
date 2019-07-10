@@ -32,7 +32,14 @@ $ npm install
 ``
 $ npm start  
 ``
+Search for NBA players and get data and pics using Azure and Beautiful Soup
 
 ![gif1](https://github.com/trabnett/nba_player_ranker_webapp/blob/master/public/gifs/NBA1.gif)
+
+Watch Videos of your favorite players and uprank or downrank them
+
 ![gif2](https://github.com/trabnett/nba_player_ranker_webapp/blob/master/public/gifs/NBA2.gif)
+
+Responsive styling using React-Bootstrap
+
 ![gif3](https://github.com/trabnett/nba_player_ranker_webapp/blob/master/public/gifs/NBA3.gif)
