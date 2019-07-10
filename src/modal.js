@@ -48,9 +48,8 @@ class Modal extends Component {
 
     return(
         <div>
-            <div className="modal-wrapper"
+            <div className="modal-wrapper-vid"
                 style={{
-                    transform: this.props.showVideos ? 'translateY(0vh)' : 'translateY(-100vh)',
                     opacity: this.props.showVideos ? '1' : '0'
                 }}>
                 <div className="centerer">
@@ -60,7 +59,7 @@ class Modal extends Component {
                     </div>
                     <div className="modal-body">
                         {content}
-                        <ControlledCarousel style={videoHide}payload={this.props.videos} playing={this.props.playing}/>
+                        <ControlledCarousel style={videoHide} payload={this.props.videos} playing={this.props.playing}/>
                     </div>
                     <div className="modal-footer">
                         <Button variant="primary" onClick={this.close}>Close</Button>

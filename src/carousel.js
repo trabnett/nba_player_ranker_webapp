@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Carousel from 'react-bootstrap/Carousel'
 import ReactPlayer from 'react-player';
+import Button from 'react-bootstrap/Button'
 
 class ControlledCarousel extends Component {
     constructor(props, context) {
@@ -34,8 +35,10 @@ class ControlledCarousel extends Component {
         >
             {this.props.payload.map(function(item,idx){
                 return(
-                    <Carousel.Item key={idx + 1}>
-                       <ReactPlayer url={item} playing={false}/>
+                    <Carousel.Item className="react-player-wrapper" key={idx + 1}>
+                      <div className='player-wrapper'>
+                        <ReactPlayer className='react-player' url={item} playing={false} width='100%' height='100%'/>
+                      </div>
                     </Carousel.Item>
                 )
             })}

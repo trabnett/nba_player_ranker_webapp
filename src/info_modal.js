@@ -22,7 +22,6 @@ class InfoModal extends Component {
             <div>
                 <div className="modal-wrapper"
                     style={{
-                        transform: this.props.showInfo ? 'translateY(0vh)' : 'translateY(-100vh)',
                         opacity: this.props.showInfo ? '1' : '0'
                     }}>
                     <div className="centerer">
@@ -35,7 +34,7 @@ class InfoModal extends Component {
                             <p>To Use: Enter an NBA player into the search mechanism, choose a profile picture for the player, and then rank him against all of the other players. Users get two votes every five minutes based on their public IP address. Use the 'Watch Videos' buttons to familiarize yourself with everyone on the list.</p>
                             <p>Enjoy!</p>
                             <div className="info-cards"> 
-                                <Card style={{ width: '18rem', margin: 'auto' }}>
+                                <Card className="features">
                                     <ListGroup>
                                         <ListGroup.Item>
                                             <Card.Header>Front end</Card.Header>
@@ -49,7 +48,7 @@ class InfoModal extends Component {
                                         </ListGroup.Item>
                                     </ListGroup>
                                 </Card>
-                                <Card style={{ width: '18rem', margin: 'auto' }}>
+                                <Card className="features">
                                     <ListGroup>
                                         <ListGroup.Item>
                                             <Card.Header>Backend</Card.Header>

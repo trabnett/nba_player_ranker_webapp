@@ -1,24 +1,56 @@
+.modal-body {
+    overflow-y:auto;
+}
 .modal-wrapper {
     background: white;
     border: 1px solid #d0cccc;
     box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
-    margin: -13em -21em auto;
+    margin: 0 auto;
     transition: all .8s;
-    max-width: 670px;
-    min-width: 670px;
-    min-height: 475px;
+    max-width: 80%;
+    min-width: 70%;
+    max-height: 90%;
     position: fixed;
-    top: 30%;
+    top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 3;
+    overflow: auto;
 }
-
+.modal-wrapper-vid {
+    background: white;
+    border: 1px solid #d0cccc;
+    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
+    margin: 0 auto;
+    transition: all .8s;
+    min-width: 70%;
+    max-height: 90%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    overflow: auto;
+}
+.player-wrapper {
+    position: relative;
+    padding-top: 56.25% /* Player ratio: 100 / (1280 / 720) */
+} 
+.react-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 .modal-header {
     background: #263238;
-    height: 40px;
+    height: 100%;
     line-height: 40px;
     padding: 5px 20px;
     text-align: right;
+    position: sticky;
+    width: 100%;
+    top: 0;
+    z-index: 3;
 }
 
 .modal-header h3 {
@@ -31,13 +63,19 @@
 .modal-body {
     padding: 10px 15px;
     text-align: center;
-    min-height: 385px;
+    padding-top: 3em;
 }
-
+.carousel-item > img { 
+    width: 100%; 
+  }
 .modal-footer {
     background: #263238;
-    height: 55px;
+    height: 100%;
     padding: 15px;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    z-index: 3;
 }
 
 .close-modal-btn {
@@ -76,13 +114,16 @@
     background-color: #1b5e20;
     float: right;
 }
-
 .back-drop {
     background-color: rgba(48, 49, 48, 0.42);
     height: 100%;
     position: fixed;
     transition: all 1.3s;
     width: 100%;
+}
+.features{
+    width: 18em; 
+    margin: auto;
 }
 
 .open-modal-btn {
@@ -96,4 +137,17 @@
 }
 .centerer{
     margin: auto;
+}
+@media only screen and (max-width: 785px) {
+    .info-cards{
+        display: flex;
+        flex-direction: column;
+    }
+    .features{
+        width: 12em;
+        margin: auto;
+    }
+    .modal-wrapper-vid{
+        min-width: 90%;
+    }
 }
