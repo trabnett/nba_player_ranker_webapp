@@ -46,9 +46,6 @@ class AddPlayer extends Component {
       this.setState({loading: false})
     }
     render() {
-      let formStyle = {
-        margin: 'auto'
-      }
       let btn = ''
       this.state.loading ? 
       btn = <Button variant="primary" disabled>
@@ -67,8 +64,8 @@ class AddPlayer extends Component {
         <div className="add-player">
           <Form onSubmit={this.preventSubmit}>
             <Form.Group controlId="formGroupEmail">
-              <Form.Label>Add A Player to the List</Form.Label>
-              <Form.Control className="w-50" style={formStyle} type="text" placeholder="Add A Player to the List" value={this.state.player} onChange={this.handleChange} />
+              <Form.Label className="form-text">Add A Player to the List</Form.Label>
+              <Form.Control className="w-50 form-input" type="text" placeholder="Add A Player to the List" value={this.state.player} onChange={this.handleChange} />
             </Form.Group>
             {btn}
           </Form>
