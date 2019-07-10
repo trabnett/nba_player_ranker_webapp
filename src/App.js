@@ -79,7 +79,7 @@ class App extends Component {
     .then(results => {return results.json()
     })
     .then(data => {
-      this.setState({lockoutTime: data.timestamp, lockout: true}, () => console.log(this.state, "after get lockout"))
+      this.setState({lockoutTime: data.timestamp, lockout: true})
     })
     .catch(function() {
       console.log("error");
