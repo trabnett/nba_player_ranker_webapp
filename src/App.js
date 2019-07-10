@@ -43,7 +43,7 @@ class App extends Component {
       return null
     }
     this.setState({showVideos: true})
-    fetch(`http://127.0.0.1:5000/videos?name=${player}`)
+    fetch(`https://player-ranker-server.herokuapp.com/videos?name=${player}`)
     .then(results => {
         return results.json()
       }).then(data => {
@@ -60,7 +60,7 @@ class App extends Component {
   }
 
   getPlayers = () => {
-    fetch('http://127.0.0.1:5000/getall')
+    fetch('https://player-ranker-server.herokuapp.com/getall')
     .then(results => {
       return results.json()
     }).then(data => {
@@ -75,7 +75,7 @@ class App extends Component {
     this.setState({players: newArr})
   }
   getLockout = () => {
-    fetch(`http://127.0.0.1:5000/get_my_ip?ip=${this.state.ipAddress}&bypass=true`)
+    fetch(`https://player-ranker-server.herokuapp.com/get_my_ip?ip=${this.state.ipAddress}&bypass=true`)
     .then(results => {return results.json()
     })
     .then(data => {
@@ -86,7 +86,7 @@ class App extends Component {
     })
   } 
   ratingChange = (name, rating) => {
-    fetch(`http://127.0.0.1:5000/get_my_ip?ip=${this.state.ipAddress}`)
+    fetch(`https://player-ranker-server.herokuapp.com/get_my_ip?ip=${this.state.ipAddress}`)
     .then(results => {return results.json()
     })
     .then(data => {
@@ -99,7 +99,7 @@ class App extends Component {
             newArray[idx].rating = rating
             newArray.sort(function(a,b){return b.rating - a.rating})
             this.setState({players: newArray}, () => {
-              fetch(`http://127.0.0.1:5000/rating?name=${name}&rating=${rating}`, {
+              fetch(`https://player-ranker-server.herokuapp.com/rating?name=${name}&rating=${rating}`, {
                 method: 'POST',
                 headers: new Headers({
                            'Content-Type': 'application/x-www-form-urlencoded',
@@ -120,7 +120,7 @@ class App extends Component {
   openSelectPic = (newPlayer) => {
     this.getLockout()
     this.setState({newPlayer}, () => {
-      fetch(`http://127.0.0.1:5000/pictures?name=${this.state.newPlayer}`)
+      fetch(`https://player-ranker-server.herokuapp.com/pictures?name=${this.state.newPlayer}`)
             .then(results => {
                 return results.json()
               }).then(data => {
