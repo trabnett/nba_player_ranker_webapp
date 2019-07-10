@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Carousel from 'react-bootstrap/Carousel'
 import ReactPlayer from 'react-player';
-import Button from 'react-bootstrap/Button'
 
 class ControlledCarousel extends Component {
     constructor(props, context) {

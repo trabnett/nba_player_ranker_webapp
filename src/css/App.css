@@ -165,6 +165,6 @@ table{
   }
   .form-input::-webkit-input-placeholder {
     font-size: 10.5px;
-    line-height: 5;
+    line-height: 3.5;
   }
 }

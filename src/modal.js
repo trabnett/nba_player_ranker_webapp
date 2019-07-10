@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Spinner } from 'reactstrap';
 import Button from 'react-bootstrap/Button';
 import ControlledCarousel from './carousel'
-import './Modal.css'
+import './css/Modal.css'
 
 class Modal extends Component {
   constructor(props){

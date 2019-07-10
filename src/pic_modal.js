@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import PicCarousel from './pic_carousel'
-import './App.css';
-import './Modal.css'
+import './css/App.css';
+import './css/Modal.css'
 
 class PicModal extends Component {
     constructor(props){
