@@ -43,7 +43,7 @@ class App extends Component {
       return null
     }
     this.setState({showVideos: true})
-    fetch(`https://player-ranker-server.herokuapp.com/videos?name=${player}`)
+    fetch(`http://127.0.0.1:5000/videos?name=${player}`)
     .then(results => {
         return results.json()
       }).then(data => {
@@ -60,7 +60,7 @@ class App extends Component {
   }
 
   getPlayers = () => {
-    fetch('https://player-ranker-server.herokuapp.com/getall')
+    fetch('http://127.0.0.1:5000/getall')
     .then(results => {
       return results.json()
     }).then(data => {
@@ -75,7 +75,7 @@ class App extends Component {
     this.setState({players: newArr})
   }
   getLockout = () => {
-    fetch(`https://player-ranker-server.herokuapp.com/get_my_ip?ip=${this.state.ipAddress}&bypass=true`)
+    fetch(`http://127.0.0.1:5000/get_my_ip?ip=${this.state.ipAddress}&bypass=true`)
     .then(results => {return results.json()
     })
     .then(data => {
@@ -86,7 +86,7 @@ class App extends Component {
     })
   } 
   ratingChange = (name, rating) => {
-    fetch(`https://player-ranker-server.herokuapp.com/get_my_ip?ip=${this.state.ipAddress}`)
+    fetch(`http://127.0.0.1:5000/get_my_ip?ip=${this.state.ipAddress}`)
     .then(results => {return results.json()
     })
     .then(data => {
@@ -99,7 +99,7 @@ class App extends Component {
             newArray[idx].rating = rating
             newArray.sort(function(a,b){return b.rating - a.rating})
             this.setState({players: newArray}, () => {
-              fetch(`https://player-ranker-server.herokuapp.com/rating?name=${name}&rating=${rating}`, {
+              fetch(`http://127.0.0.1:5000/rating?name=${name}&rating=${rating}`, {
                 method: 'POST',
                 headers: new Headers({
                            'Content-Type': 'application/x-www-form-urlencoded',
@@ -120,7 +120,7 @@ class App extends Component {
   openSelectPic = (newPlayer) => {
     this.getLockout()
     this.setState({newPlayer}, () => {
-      fetch(`https://player-ranker-server.herokuapp.com/pictures?name=${this.state.newPlayer}`)
+      fetch(`http://127.0.0.1:5000/pictures?name=${this.state.newPlayer}`)
             .then(results => {
                 return results.json()
               }).then(data => {
@@ -158,11 +158,11 @@ class App extends Component {
     let toggleShowModal = (player) => {this.openModal(player)}
     let showVideos = this.state.showVideos
     return (
-      <div className="App">
+      <div className="App text-center">
         <Header openInfoModal={this.openInfoModal} closeInfoModal={this.closeInfoModal} showInfo={this.state.showInfo}/>
         <Lockout lockoutTime={this.state.lockoutTime} lockout={this.state.lockout} closeLockout={this.closeLockout}/>
         { this.state.toggleShowModal ? <div onClick={this.toggleShowModal} className="back-drop"></div> : null }
-        <div className="player-list">
+        <div className="container">
           <InfoModal
             className="modal"
             showInfo={this.state.showInfo}
@@ -185,7 +185,7 @@ class App extends Component {
               close={this.closeSelectPic}
               playing={this.state.playing}/>
           <AddPlayer openSelectPic={this.openSelectPic} sortByRating={this.sortByRating}/>
-            <div>
+            <div className="card-list">
               {this.state.players.map(function(player, idx){
                 return(
                   <PlayerCard key={idx +1} idx={idx} player={player} showVideos={showVideos} ratingChange={ratingChange} toggleShowModal={toggleShowModal}/>
@@ -200,3 +200,5 @@ class App extends Component {
 }
 
 export default App;
+
+

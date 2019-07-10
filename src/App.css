@@ -72,25 +72,30 @@ table{
   height: 100%;
   line-height: 8em;
 }
+.border-secondary {
+  border-color: #6c757d !important;
+  max-width: 45em;
+}
+.card-list{
+
+}
 .card-content{
-  display: flex;
+  display: inherit;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
 }
 .card-container {
-  margin: auto;
-  width: 80%;
-  position: relative;
-  z-index: 0;
+  margin: 0 auto;
+  width: 65%;
 }
 .card-body {
   display: flex;
   justify-content: center;
 }
 .rank {
-  height: 100%;
-  margin-right: 5rem;
 }
 .info-box {
-  margin-left: 5rem;
   line-height: 3.8em;
 }
 .rank-number {
@@ -110,4 +115,26 @@ table{
   background-color: #ff9999;
   width: 100%;
   align-items: initial;
+}
+
+@media only screen and (max-width: 785px) {
+  .welcome{
+   font-size: 20px;
+  }
+  .card-body{
+    display: inline-grid;
+  }
+  .rank {
+    height: 100%;
+    margin-bottom: 1em;
+  }
+  .pic-container {
+    width: 10em;
+    height: 15em;
+    line-height: 8em;
+  }
+  .info-box {
+    margin-left: 0rem;
+    line-height: 3.8em;
+  }
 }

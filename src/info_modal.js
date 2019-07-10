@@ -23,8 +23,7 @@ class InfoModal extends Component {
                 <div className="modal-wrapper"
                     style={{
                         transform: this.props.showInfo ? 'translateY(0vh)' : 'translateY(-100vh)',
-                        opacity: this.props.showInfo ? '1' : '0',
-                        top: "35%"
+                        opacity: this.props.showInfo ? '1' : '0'
                     }}>
                     <div className="centerer">
                         <div className="modal-header">

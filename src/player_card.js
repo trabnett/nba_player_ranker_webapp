@@ -53,30 +53,14 @@ class PlayerCard extends Component {
             <span>   Loading...</span>
           </Button> :
     btn = <Button variant="primary" onClick={this.toggleShowModal} >Watch Videos</Button>
-    let cardStyle = {
-      "minWidth": "35em"
-    }
     return (
       <div className="card-container">
-        <Card style={cardStyle} border="secondary">
+        <Card border="secondary">
           <Card.Header as="h5">{this.props.player.name}</Card.Header>
           <Card.Body>
             <div className="card-content">
-              <div>
-                <table className="rank">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className='rank-number'>{this.props.idx + 1}</td>
-                    </tr>
-                    <tr>
-                    </tr>
-                  </tbody>
-                </table>
+              <div className="rank">
+                <p className='rank-number'>{this.props.idx + 1}</p>
               </div>
               <div className="pic-container">
                 <img className="player_pic" src={this.props.player.picture_url} alt="player avatar"/>
