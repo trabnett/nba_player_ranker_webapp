@@ -38,7 +38,7 @@ class PicModal extends Component {
         };
         return(
             <div>
-                <div className="modal-wrapper"
+                <div className="modal-wrapper-vid"
                     style={{
                         transform: this.props.selectPic ? 'translateY(0vh)' : 'translateY(-100vh)',
                         opacity: this.props.selectPic ? '1' : '0'

@@ -179,6 +179,7 @@ class App extends Component {
             />
             <PicModal 
               className="modal"
+              // selectPic="true"
               selectPic={this.state.selectPic} 
               player={this.state.newPlayer} 
               pics={this.state.pics}

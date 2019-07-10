@@ -28,7 +28,7 @@
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) !important;
     z-index: 3;
     overflow: auto;
 }
@@ -46,7 +46,7 @@
     height: 100%;
     line-height: 40px;
     padding: 5px 20px;
-    text-align: right;
+    text-align: center;
     position: sticky;
     width: 100%;
     top: 0;
