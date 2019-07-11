@@ -32,6 +32,7 @@ $ npm install
 ``
 $ npm start  
 ``
+  
 Search for NBA players and get data and pics using Azure and Beautiful Soup
 
 ![gif1](https://github.com/trabnett/nba_player_ranker_webapp/blob/master/public/gifs/NBA1.gif)

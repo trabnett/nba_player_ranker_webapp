@@ -65,7 +65,7 @@ class AddPlayer extends Component {
           <Form onSubmit={this.preventSubmit}>
             <Form.Group controlId="formGroupEmail">
               <Form.Label className="form-text">Add A Player to the List</Form.Label>
-              <Form.Control className="w-50 form-input" type="text" placeholder="Add A Player to the List" value={this.state.player} onChange={this.handleChange} />
+              <Form.Control className="w-50 form-input" type="text" placeholder="Add a Player to the List" value={this.state.player} onChange={this.handleChange} />
             </Form.Group>
             {btn}
           </Form>
