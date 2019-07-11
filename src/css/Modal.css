@@ -19,6 +19,7 @@
 }
 .modal-wrapper-vid {
     background: white;
+    border-radius: 6px;
     box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
     margin: 0 auto;
     transition: all .8s;
